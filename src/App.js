@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Screens/Home';
+import Login from './components/Screens/Login';
+import Footer from './components/Footer/Footer';
+
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
+import Signup from './components/Screens/Signup';
+import { CartProvider } from './components/ContextReducer/ContextReducer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <React.StrictMode>
+    <CartProvider>
+    <BrowserRouter>
+    <div>
+      <Navbar />
+      
+      <Routes>
+      <Route exact path='/' element = {<Home />} />
+      <Route exact path='/login' element = {<Login />} />
+      <Route exact path = '/createuser' element = {<Signup />} />
+      </Routes>
+      <Footer />
     </div>
+    </BrowserRouter>
+     </CartProvider>
+     </React.StrictMode>
   );
 }
 
